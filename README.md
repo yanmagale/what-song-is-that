@@ -8,3 +8,7 @@
 ## Spotify API
  - [Search Item](https://developer.spotify.com/console/get-search-item/)
  - [Get a Track](https://developer.spotify.com/console/get-track/)
+
+
+ # Stack
+  - React
