@@ -15,4 +15,8 @@
   
   
 # Release 
- ZEIT - https://github.com/zeit/release
+ Using Release Toll by ZEIT - https://github.com/zeit/release
+
+ - Run `npx release <type> -p` 
+  * Will create a new tag
+  * Will create a draft new release
