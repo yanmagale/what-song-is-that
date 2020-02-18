@@ -66,7 +66,7 @@ class App extends Component {
           finished: false,
           songs: ['The Zoo', 'Send me an angel', 'Rock you like a hurricane']
         },
-        'Hellowen': {
+        'Helloween': {
           finished: false,
           songs: ['I want out']
         }
