@@ -5,15 +5,25 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      listOfTracks: ['Roots Bloody Roots', 'Living On a Prayer', 'You shook me all nigth long', 'Enter Sadman', 'Smells Like Teen Spirit',
-        'Jeremy', 'The Final Coutdown', 'I Wanna Rock', 'November Rain', 'The Trooper',
-        'Girls Girls Girls', 'Come as you are', 'The Zoo', 'Raining Blood',
-        'Send me an angel', 'Back in Black', 'What about love', 'Toxicity',
-        'Always', 'Its my life', 'Master of Puppets', 'Sad but true',
-        'Rock you like a hurrica', 'Holiday', 'Fear of the dark', 'I want out',
-        'Never forget, Never repeat', 'Machine Messiah', 'Dance of death',
-        'Brave new World', 'Stone', 'Blaze of Glory', 'Santa Fe', 'Faint', 'In The End',
-        'Wanted Dead or Alive', 'The Memory Remains', 'Man in the box', 'Hail to the king'],
+      listOfTracks: {
+        'Sepultura': {
+          finished: false,
+          songs: ['Roots Bloody Roots']
+        },
+        'Bon Jovi': {
+          finished: false,
+          songs: ['Living On a Prayer', 'Always', 'Its My Life', 'Wanted Dead or Alive', 'You Give Love a Bad Name']
+        },
+        'Iron Maiden': {
+          finished: false,
+          songs: ['The Trooper', 'Fear of the dark', 'Brave New World', 'Run to the Hills']
+        },
+        'Nirvana': {
+          finished: false,
+          songs: ['Smells Like Teen Spirit', 'Come as You Are']
+        }
+      },
+      previuslyBands: [], 
       passedTracks: [],
       track: {},
       isShowTrack: false
@@ -37,22 +47,35 @@ class App extends Component {
       </div>
     );
   }
+
+  _getRandomBand(bands) {
+    var keys = Object.keys(bands)
+    var randomBand = keys[ keys.length * Math.random() << 0];
+    return {
+      band: randomBand,
+      songs: bands[randomBand].songs
+    }
+  }
+
   _generateRandomTrack() {
-
-    const randomName = this.state.listOfTracks[Math.floor(Math.random() * this.state.listOfTracks.length)]
-
+    const randomBand = this._getRandomBand(this.state.listOfTracks);
+    const randomName = randomBand.songs[Math.floor(Math.random() * randomBand.songs.length)]
+    
     if (this.state.passedTracks.indexOf(randomName) > -1) {
       return this._generateRandomTrack();
     }
     let newPassedTracks = [...this.state.passedTracks, randomName]
     this.setState({ passedTracks: newPassedTracks })
-    return randomName;
+    return {
+      band: randomBand.band,
+      song: randomName
+    };
   }
 
   async getSong() {
     const randomTrack = this._generateRandomTrack();
     const token = 'YOUR_TOKEN_HERE';
-    const data = await fetch(`https://api.spotify.com/v1/search?q=${decodeURIComponent(randomTrack)}&type=track`,
+    const data = await fetch(`https://api.spotify.com/v1/search?q=${decodeURIComponent(randomTrack.band)} ${decodeURIComponent(randomTrack.song)}&type=track`,
       { headers: { 'Authorization': 'Bearer ' + token } })
       .then(response => response.json())
       .catch(error => new Error('erro at get characters', error));
