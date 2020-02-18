@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './app.css';
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -36,7 +36,7 @@ class App extends Component {
         },
         'Europe': {
           finished: false,
-          songs: ['The Final Coutdown']
+          songs: ['The Final Countdown']
         },
         'Twisted Sister': {
           finished: false,
@@ -122,7 +122,7 @@ class App extends Component {
 
   async getSong() {
     const randomTrack = this._generateRandomTrack();
-    const token = 'YOUR_TOKEN_HERE';
+    const token = 'BQBYoq_hTkjWHyxBNr4tk5bNjxRMrS9W6K20yy-WU5ko3IgLaTvbGWqXu4vgc8Ye-1VfHWvNks46-FAIQHe6KrPRMrFM7ZnLH0UykAd3mhxU-GdUXjQ7Iyq3UeLwlY_AYMYQDME0984pgBsOG4DKCbWI9yA6-mRU3mjDc0OKcBey-n-1z_P9E5gD07TPSjxdOIVniTjZa2PZNnci5tGdd2AebvM';
     const data = await fetch(`https://api.spotify.com/v1/search?q=${decodeURIComponent(randomTrack.band)} ${decodeURIComponent(randomTrack.song)}&type=track`,
       { headers: { 'Authorization': 'Bearer ' + token } })
       .then(response => response.json())
