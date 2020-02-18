@@ -21,9 +21,57 @@ class App extends Component {
         'Nirvana': {
           finished: false,
           songs: ['Smells Like Teen Spirit', 'Come as You Are']
+        },
+        'AC/DC': {
+          finished: false,
+          songs: ['You shook me all nigth long', 'Back in Black']
+        },
+        'Metallica': {
+          finished: false,
+          songs: ['Enter Sadman', 'Master of Puppets', 'Sad but true']
+        },
+        'Pearl Jam': {
+          finished: false,
+          songs: ['Jeremy', 'Black', 'Alive']
+        },
+        'Europe': {
+          finished: false,
+          songs: ['The Final Coutdown']
+        },
+        'Twisted Sister': {
+          finished: false,
+          songs: ['I Wanna Rock']
+        },
+        'Guns N Roses': {
+          finished: false,
+          songs: ['November Rain']
+        },
+        'Alice In Chains': {
+          finished: false,
+          songs: ['Man in the box']
+        },
+        'Linkin Park': {
+          finished: false,
+          songs: ['Faint', 'In The End']
+        },
+        'Motley Crue': {
+          finished: false,
+          songs: ['Girls Girls Girls']
+        },
+        'Slayer': {
+          finished: false,
+          songs: ['Raining Blood']
+        },
+        'Scorpions': {
+          finished: false,
+          songs: ['The Zoo', 'Send me an angel', 'Rock you like a hurricane']
+        },
+        'Hellowen': {
+          finished: false,
+          songs: ['I want out']
         }
       },
-      previuslyBands: [], 
+      previuslyBands: [],
       passedTracks: [],
       track: {},
       isShowTrack: false
@@ -50,7 +98,7 @@ class App extends Component {
 
   _getRandomBand(bands) {
     var keys = Object.keys(bands)
-    var randomBand = keys[ keys.length * Math.random() << 0];
+    var randomBand = keys[keys.length * Math.random() << 0];
     return {
       band: randomBand,
       songs: bands[randomBand].songs
@@ -60,7 +108,7 @@ class App extends Component {
   _generateRandomTrack() {
     const randomBand = this._getRandomBand(this.state.listOfTracks);
     const randomName = randomBand.songs[Math.floor(Math.random() * randomBand.songs.length)]
-    
+
     if (this.state.passedTracks.indexOf(randomName) > -1) {
       return this._generateRandomTrack();
     }
