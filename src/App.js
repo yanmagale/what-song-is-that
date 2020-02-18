@@ -24,11 +24,11 @@ class App extends Component {
         },
         'AC/DC': {
           finished: false,
-          songs: ['You shook me all nigth long', 'Back in Black']
+          songs: ['You shook me all night long', 'Back in Black']
         },
         'Metallica': {
           finished: false,
-          songs: ['Enter Sadman', 'Master of Puppets', 'Sad but true']
+          songs: ['Enter Sandman', 'Master of Puppets', 'Sad but true']
         },
         'Pearl Jam': {
           finished: false,
