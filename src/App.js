@@ -103,6 +103,13 @@ class App extends Component {
     return (
       <div className="container">
         <h2>What Song Is This ??</h2>
+        <div className="tips">
+          (60,70,80,90 e 2000)
+          - Heavy Metal
+          - Hard Rock
+          - Trash Metal
+          - New Metal
+        </div>
         <div className="actions">
           <button onClick={() => this.getSong()}>Get Music</button>
           <button onClick={() => this.getMoreSong()}>More of this song</button>
