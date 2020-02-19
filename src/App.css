@@ -13,3 +13,8 @@
      width: 300px;
     margin-top: 10px;
   }
+.actions {
+  width: 30vw;
+    display: flex;
+    justify-content: space-between;
+}

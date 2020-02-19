@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './app.css';
 
 class App extends Component {
   constructor() {
@@ -56,7 +56,7 @@ class App extends Component {
         },
         'Motley Crue': {
           finished: false,
-          songs: ['Girls Girls Girls']
+          songs: ['Shout at the devil','Girls Girls Girls']
         },
         'Slayer': {
           finished: false,
@@ -69,7 +69,19 @@ class App extends Component {
         'Helloween': {
           finished: false,
           songs: ['I want out']
-        }
+        },
+        'The Police': {
+          finished: false,
+          songs: ['Message in a bottle']
+        },
+        'Black Sabbath': {
+          finished: false,
+          songs: ['Iron Man', 'Paranoid', 'War Pigs']
+        },
+        'Ozzy Osbourne': {
+          finished: false,
+          songs: ['Mama im coming home', 'Crazy Train']
+        },
       },
       previuslyBands: [],
       passedTracks: [],
@@ -83,7 +95,13 @@ class App extends Component {
     return (
       <div className="container">
         <h2>What Song Is This ??</h2>
-        <button onClick={() => this.getSong()}>Get Music</button>
+        <div className="actions">
+          <button onClick={() => this.getSong()}>Get Music</button>
+          <button onClick={() => this.getMoreSong()}>More of this song</button>
+          <button onClick={() => this.getFullSong()}>Full Music</button>
+          <button onClick={() => this.showSongInformation()}>Show Artist</button>
+        </div>
+        <audio id="player"></audio>  
         {Object.keys(track).length > 0 && isShowTrack && (
           <React.Fragment>
             <div className="track">
@@ -120,9 +138,41 @@ class App extends Component {
     };
   }
 
+  showSongInformation() {
+    this.setState({ isShowTrack: true })
+  }
+
+  getMoreSong() {
+    let player = document.getElementById("player");
+    player.play();
+    setTimeout(() => {
+      player.pause();
+    }, 5000)
+  }
+
+  getFullSong() {
+    let player = document.getElementById("player");
+    player.play();
+
+    
+    player.onended = function() {
+      this.resetPlayer();
+    };
+    
+  }
+
+  resetPlayer() {
+    this.setState({ isShowTrack: false })
+    let player = document.getElementById("player");
+    player.currentTime = 0;
+    player.src = ''
+    player.pause();
+  }
+
   async getSong() {
+    this.resetPlayer();
     const randomTrack = this._generateRandomTrack();
-    const token = 'BQBYoq_hTkjWHyxBNr4tk5bNjxRMrS9W6K20yy-WU5ko3IgLaTvbGWqXu4vgc8Ye-1VfHWvNks46-FAIQHe6KrPRMrFM7ZnLH0UykAd3mhxU-GdUXjQ7Iyq3UeLwlY_AYMYQDME0984pgBsOG4DKCbWI9yA6-mRU3mjDc0OKcBey-n-1z_P9E5gD07TPSjxdOIVniTjZa2PZNnci5tGdd2AebvM';
+    const token = 'YOUR TOKEN HERE';
     const data = await fetch(`https://api.spotify.com/v1/search?q=${decodeURIComponent(randomTrack.band)} ${decodeURIComponent(randomTrack.song)}&type=track`,
       { headers: { 'Authorization': 'Bearer ' + token } })
       .then(response => response.json())
@@ -136,18 +186,17 @@ class App extends Component {
         .then(response => response.json())
         .catch(error => new Error('erro at get characters', error));
 
+        
       if (track.preview_url) {
-        let player = new Audio(track.preview_url);
-        player.play();
         this.setState({ track: track })
-        setTimeout(() => {
-          this.setState({ isShowTrack: true })
-        }, 4000)
+        let player = document.getElementById("player");
+        player.src = track.preview_url;
+        player.currentTime = 0;
+        player.play();
+
         setTimeout(() => {
           player.pause();
-          player.currentTime = 0;
-          this.setState({ isShowTrack: false })
-        }, 10000)
+        }, 3000)
       }
     }
   }
