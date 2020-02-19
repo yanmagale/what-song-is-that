@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './app.css';
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -16,7 +16,7 @@ class App extends Component {
         },
         'Iron Maiden': {
           finished: false,
-          songs: ['The Trooper', 'Fear of the dark', 'Brave New World', 'Run to the Hills']
+          songs: ['The Trooper', 'Fear of the dark', 'The number of the beast', 'Run to the Hills']
         },
         'Nirvana': {
           finished: false,
@@ -24,11 +24,11 @@ class App extends Component {
         },
         'AC/DC': {
           finished: false,
-          songs: ['You shook me all night long', 'Back in Black']
+          songs: ['You shook me all night long', 'Back in Black', 'Highway to hell', 'Thunderstruck']
         },
         'Metallica': {
           finished: false,
-          songs: ['Enter Sandman', 'Master of Puppets', 'Sad but true']
+          songs: ['Enter Sandman', 'Master of Puppets', 'Sad but true', 'Nothing else matters', 'The unforgiven']
         },
         'Pearl Jam': {
           finished: false,
@@ -40,7 +40,7 @@ class App extends Component {
         },
         'Twisted Sister': {
           finished: false,
-          songs: ['I Wanna Rock']
+          songs: ['I Wanna Rock', "We're not gonna take it"]
         },
         'Guns N Roses': {
           finished: false,
@@ -48,7 +48,7 @@ class App extends Component {
         },
         'Alice In Chains': {
           finished: false,
-          songs: ['Man in the box']
+          songs: ['Man in the box', 'Rooster']
         },
         'Linkin Park': {
           finished: false,
@@ -56,7 +56,7 @@ class App extends Component {
         },
         'Motley Crue': {
           finished: false,
-          songs: ['Shout at the devil','Girls Girls Girls']
+          songs: ['Shout at the devil', 'Girls Girls Girls']
         },
         'Slayer': {
           finished: false,
@@ -82,6 +82,14 @@ class App extends Component {
           finished: false,
           songs: ['Mama im coming home', 'Crazy Train']
         },
+        'Kiss': {
+          finished: false,
+          songs: ['Rock and roll all night', 'I love it loud', 'I was made for loving you']
+        },
+        'Motorhead': {
+          finished: false,
+          songs: ['Ace of spades']
+        },
       },
       previuslyBands: [],
       passedTracks: [],
@@ -101,7 +109,7 @@ class App extends Component {
           <button onClick={() => this.getFullSong()}>Full Music</button>
           <button onClick={() => this.showSongInformation()}>Show Artist</button>
         </div>
-        <audio id="player"></audio>  
+        <audio id="player"></audio>
         {Object.keys(track).length > 0 && isShowTrack && (
           <React.Fragment>
             <div className="track">
@@ -154,11 +162,11 @@ class App extends Component {
     let player = document.getElementById("player");
     player.play();
 
-    
-    player.onended = function() {
+
+    player.onended = function () {
       this.resetPlayer();
     };
-    
+
   }
 
   resetPlayer() {
@@ -172,7 +180,7 @@ class App extends Component {
   async getSong() {
     this.resetPlayer();
     const randomTrack = this._generateRandomTrack();
-    const token = 'YOUR TOKEN HERE';
+    const token = 'BQD8ehJaIHc62ofKj5MJoWNBEghOPbiMY5yXqjbpOWh4RTh7t8HwjgJXIq7GVPEPV3TDmAGGh8Q2kvRPVt4W6zo5nn_CE1mZPAjIAkJmhkUvg5wUrDtJ-FftP7P4X9AXTCkpWhmVZLvgVv_zMj_gRo8iRawmbH551i9tI0b8t7q8aoR_e9vori7zOvlPMT9uQqHyRZMV1u7gsoBdwdWZLkynzAE';
     const data = await fetch(`https://api.spotify.com/v1/search?q=${decodeURIComponent(randomTrack.band)} ${decodeURIComponent(randomTrack.song)}&type=track`,
       { headers: { 'Authorization': 'Bearer ' + token } })
       .then(response => response.json())
@@ -186,7 +194,7 @@ class App extends Component {
         .then(response => response.json())
         .catch(error => new Error('erro at get characters', error));
 
-        
+
       if (track.preview_url) {
         this.setState({ track: track })
         let player = document.getElementById("player");
