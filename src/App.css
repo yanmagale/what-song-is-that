@@ -1,20 +1,54 @@
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+body {
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+}
+
+.game {
+  display: flex;
+align-items: center;
     margin: 0 auto;
     flex-direction: column;
-    height: 100vh;
+    
+}
+
+
+.container {
+    height: 50vh;
+
+    display: grid;
+    grid-template-columns: 10% 70% 20%;
+    grid-gap: 10px;
+    width: 80vw;
+    margin: 0 auto;
+    padding-top: 30px;
+
+    
+  }
+
+  .image > img {
+    width: 300px;
+  }
+  .image > .song {
+    width: 150px;
+  }
+
+  .tips {
+    padding-bottom: 50px;
+    font-style: italic;
   }
   
   .track {
     display: flex; 
     flex-direction: column;
-     width: 300px;
-    margin-top: 10px;
+     width: 80%;
+    margin-top: 50px;
   }
 .actions {
-  width: 30vw;
+  width: 100%;
     display: flex;
     justify-content: space-between;
 }

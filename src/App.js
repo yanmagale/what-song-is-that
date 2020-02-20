@@ -10,13 +10,17 @@ class App extends Component {
           finished: false,
           songs: ['Roots Bloody Roots']
         },
+        'Angra': {
+          finished: false,
+          songs: ['Carry On']
+        },
         'Bon Jovi': {
           finished: false,
           songs: ['Living On a Prayer', 'Always', 'Its My Life', 'Wanted Dead or Alive', 'You Give Love a Bad Name']
         },
         'Iron Maiden': {
           finished: false,
-          songs: ['The Trooper', 'Fear of the dark', 'The number of the beast', 'Run to the Hills']
+          songs: ['The Trooper', 'Fear of the dark', 'The number of the beast', 'Run to the Hills', 'Hallowed be thy name']
         },
         'Nirvana': {
           finished: false,
@@ -24,7 +28,7 @@ class App extends Component {
         },
         'AC/DC': {
           finished: false,
-          songs: ['You shook me all night long', 'Back in Black', 'Highway to hell', 'Thunderstruck']
+          songs: ['You shook me all night long', 'Back in Black', 'Highway to hell', 'Thunderstruck', 'T.N.T']
         },
         'Metallica': {
           finished: false,
@@ -44,7 +48,7 @@ class App extends Component {
         },
         'Guns N Roses': {
           finished: false,
-          songs: ['November Rain']
+          songs: ['November Rain', "Sweet Child O' Mine", 'Welcome To The Jungle']
         },
         'Alice In Chains': {
           finished: false,
@@ -52,7 +56,7 @@ class App extends Component {
         },
         'Linkin Park': {
           finished: false,
-          songs: ['Faint', 'In The End']
+          songs: ['In The End', 'Numb']
         },
         'Motley Crue': {
           finished: false,
@@ -64,7 +68,7 @@ class App extends Component {
         },
         'Scorpions': {
           finished: false,
-          songs: ['The Zoo', 'Send me an angel', 'Rock you like a hurricane']
+          songs: ['The Zoo', 'Send me an angel', 'Rock you like a hurricane', 'Wind Of Change']
         },
         'Helloween': {
           finished: false,
@@ -72,7 +76,7 @@ class App extends Component {
         },
         'The Police': {
           finished: false,
-          songs: ['Message in a bottle']
+          songs: ['Message in a bottle', 'Every Breath You Take']
         },
         'Black Sabbath': {
           finished: false,
@@ -90,42 +94,99 @@ class App extends Component {
           finished: false,
           songs: ['Ace of spades']
         },
+        'Lynyrd skynyrd': {
+          finished: false,
+          songs: ['Simple Man', 'Sweet Home Alabama', 'Free Bird']
+        },
+        'Dire Straits': {
+          finished: false,
+          songs: ['Sultans Of Swing', 'Money For Nothing']
+        },
+        'Whitesnake': {
+          finished: false,
+          songs: ['Is This Love', 'Here I Go']
+        },
+        'Poison': {
+          finished: false,
+          songs: ['Every Rose Has Its Thorn']
+        },
+        'Van Halen': {
+          finished: false,
+          songs: ['Jump']
+        },
+        'Led Zeppelin': {
+          finished: false,
+          songs: ['Stairway to Heaven', 'Whole Lotta Love', 'Immigrant Song']
+        },
+        'Pink Floyd': {
+          finished: false,
+          songs: ['Another Brick In The Wall', 'Wish You Were Here']
+        },
+        'Deep Purple': {
+          finished: false,
+          songs: ['Smoke On The Water']
+        },
+        '4 non blondes': {
+          finished: false,
+          songs: ["What's up"]
+        },
+        'Skid Row': {
+          finished: false,
+          songs: ['I Remember You', '18 And Life', 'In a Darkened Room']
+        } 
       },
       previuslyBands: [],
       passedTracks: [],
       track: {},
-      isShowTrack: false
+      isShowTrack: false,
+      isShowAnotherActions: false
     }
   }
 
   render() {
-    const { track, isShowTrack } = this.state;
+    const { track, isShowTrack, isShowAnotherActions } = this.state;
     return (
-      <div className="container">
+      <React.Fragment>
         <h2>What Song Is This ??</h2>
-        <div className="tips">
-          (60,70,80,90 e 2000)
-          - Heavy Metal
-          - Hard Rock
-          - Trash Metal
-          - New Metal
-        </div>
-        <div className="actions">
-          <button onClick={() => this.getSong()}>Get Music</button>
-          <button onClick={() => this.getMoreSong()}>More of this song</button>
-          <button onClick={() => this.getFullSong()}>Full Music</button>
-          <button onClick={() => this.showSongInformation()}>Show Artist</button>
-        </div>
-        <audio id="player"></audio>
-        {Object.keys(track).length > 0 && isShowTrack && (
-          <React.Fragment>
-            <div className="track">
-              This music is <span style={{ fontStyle: 'italic' }}>{track.name}</span> from album
-              <img src={track.album.images[1].url} />
+        <div className="container">
+        <div className="image">
+            <img src='/music-icon.png' className="song"/>
+          </div>
+          <div className="game">
+              <div className="tips">
+              (60,70,80,90 e 2000)
+              - Heavy Metal
+              - Hard Rock
+              - Trash Metal
+              - New Metal
             </div>
-          </React.Fragment>
-        )}
-      </div>
+            <div className="actions">
+              <button onClick={() => this.getSong()}>Get Music</button>
+              {isShowAnotherActions && 
+                <React.Fragment>
+                  <button onClick={() => this.getMoreSong()}>More of this song</button>
+                  <button onClick={() => this.getFullSong()}>Full Music</button>
+                  <button onClick={() => this.showSongInformation()}>Show Artist</button>
+                </React.Fragment>  
+              }
+            </div>
+              <audio id="player"></audio>
+              {Object.keys(track).length > 0 && isShowTrack && (
+                <React.Fragment>
+                  <div className="track">
+                    This music is <span style={{ fontStyle: 'italic' }}>{track.name}</span> from album
+                    <img src={track.album.images[1].url} />
+                  </div>
+                </React.Fragment>
+              )}
+          </div>
+          <div className="image">
+            <img src='/guitar.png' alt="My Custom Image" />
+          </div>
+          
+          
+        </div>
+      </React.Fragment>
     );
   }
 
@@ -172,12 +233,13 @@ class App extends Component {
 
     player.onended = function () {
       this.resetPlayer();
-    };
+    }.bind(this);
 
   }
 
   resetPlayer() {
     this.setState({ isShowTrack: false })
+    this.setState({ isShowAnotherActions: false })
     let player = document.getElementById("player");
     player.currentTime = 0;
     player.src = ''
@@ -187,7 +249,7 @@ class App extends Component {
   async getSong() {
     this.resetPlayer();
     const randomTrack = this._generateRandomTrack();
-    const token = 'BQD8ehJaIHc62ofKj5MJoWNBEghOPbiMY5yXqjbpOWh4RTh7t8HwjgJXIq7GVPEPV3TDmAGGh8Q2kvRPVt4W6zo5nn_CE1mZPAjIAkJmhkUvg5wUrDtJ-FftP7P4X9AXTCkpWhmVZLvgVv_zMj_gRo8iRawmbH551i9tI0b8t7q8aoR_e9vori7zOvlPMT9uQqHyRZMV1u7gsoBdwdWZLkynzAE';
+    const token = 'YOUR_TOKEN_HERE';
     const data = await fetch(`https://api.spotify.com/v1/search?q=${decodeURIComponent(randomTrack.band)} ${decodeURIComponent(randomTrack.song)}&type=track`,
       { headers: { 'Authorization': 'Bearer ' + token } })
       .then(response => response.json())
@@ -211,6 +273,7 @@ class App extends Component {
 
         setTimeout(() => {
           player.pause();
+          this.setState({ isShowAnotherActions: true })
         }, 3000)
       }
     }
