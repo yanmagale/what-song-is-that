@@ -6,17 +6,9 @@ class App extends Component {
     super();
     this.state = {
       listOfTracks: {
-        'Sepultura': {
-          finished: false,
-          songs: ['Roots Bloody Roots']
-        },
-        'Angra': {
-          finished: false,
-          songs: ['Carry On']
-        },
         'Bon Jovi': {
           finished: false,
-          songs: ['Living On a Prayer', 'Always', 'Its My Life', 'Wanted Dead or Alive', 'You Give Love a Bad Name']
+          songs: ['Living On a Prayer', 'Bad Medicine', 'Its My Life', 'Wanted Dead or Alive', 'You Give Love A Bad Name']
         },
         'Iron Maiden': {
           finished: false,
@@ -58,17 +50,13 @@ class App extends Component {
           finished: false,
           songs: ['In The End', 'Numb']
         },
-        'Motley Crue': {
-          finished: false,
-          songs: ['Shout at the devil', 'Girls Girls Girls']
-        },
         'Slayer': {
           finished: false,
           songs: ['Raining Blood']
         },
         'Scorpions': {
           finished: false,
-          songs: ['The Zoo', 'Send me an angel', 'Rock you like a hurricane', 'Wind Of Change']
+          songs: ['Still Loving You', 'Send me an angel', 'Rock you like a hurricane', 'Wind Of Change']
         },
         'Helloween': {
           finished: false,
@@ -133,7 +121,99 @@ class App extends Component {
         'Skid Row': {
           finished: false,
           songs: ['I Remember You', '18 And Life', 'In a Darkened Room']
-        } 
+        },
+        'Aerosmith': {
+          finished: false,
+          songs: ['Dream On', 'Cryin', "I Don't Want to Miss a Thing"]
+        },
+        'Queen': {
+          finished: false,
+          songs: ['Bohemian Rhapsody', 'We Are The Champions', 'We Will Rock You', "Don't Stop Me Now", 'The Show Must Go On']
+        },
+        'Red Hot Chili Peppers': {
+          finished: false,
+          songs: ['Snow (Hey Oh)', 'Otherside', "Can't Stop"]
+        },
+        'Foo Fighters': {
+          finished: false,
+          songs: ['The Pretender', 'Everlong', 'Best Of You', 'Times Like These']
+        },
+        'Dio': {
+          finished: false,
+          songs: ['Holy Diver']
+        },
+        'Judas Priest': {
+          finished: false,
+          songs: ['Breaking The Law', 'Painkiller']
+        },
+        'Boston': {
+          finished: false,
+          songs: ['More Than A Feeling']
+        },
+        'Eagles': {
+          finished: false,
+          songs: ['Hotel California']
+        },
+        'The Rolling Stones': {
+          finished: false,
+          songs: ["(I Can't Get No) Satisfaction"]
+        },
+        'Journey': {
+          finished: false,
+          songs: ["Don't Stop Believin'", 'Separate Ways']
+        },
+        'Heart': {
+          finished: false,
+          songs: ['Alone', 'Barracuda']
+        },
+        'Megadeth': {
+          finished: false,
+          songs: ['Symphony of Destruction']
+        },
+        'Audioslave': {
+          finished: false,
+          songs: ['Like a Stone']
+        },
+        'Rage Against The Machine': {
+          finished: false,
+          songs: ['Killing In the Name']
+        },
+        'Joan Jett': {
+          finished: false,
+          songs: ["I Love Rock 'n' Roll"]
+        },
+        'Creed': {
+          finished: false,
+          songs: ['One Last Breath', 'My Sacrifice']
+        },
+        'Evanescence': {
+          finished: false,
+          songs: ['Bring Me To Life']
+        },
+        'U2': {
+          finished: false,
+          songs: ['With Or Without You']
+        },
+        'Ramones': {
+          finished: false,
+          songs: ['I Wanna Be Sedated', 'Blitzkrieg Bop']
+        },
+        'Green Day': {
+          finished: false,
+          songs: ['Basket Case', 'American Idiot']
+        },
+        'Mothley Crue': {
+          finished: false,
+          songs: ['Kickstart My Heart', 'Dr. Feelgood']
+        },
+        'Bryan Adams': {
+          finished: false,
+          songs: ['Heaven']
+        },
+        'Accept': {
+          finished: false,
+          songs: ['Balls to the Wall']
+        }
       },
       previuslyBands: [],
       passedTracks: [],
@@ -154,10 +234,11 @@ class App extends Component {
           </div>
           <div className="game">
               <div className="tips">
-              (60,70,80,90 e 2000)
+              Only Classic Rock Songs (60,70,80,90 e 2000)
               - Heavy Metal
               - Hard Rock
               - Trash Metal
+              - Punk Metal
               - New Metal
             </div>
             <div className="actions">
